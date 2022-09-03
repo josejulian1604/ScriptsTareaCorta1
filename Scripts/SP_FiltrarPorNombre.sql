@@ -1,22 +1,11 @@
--- ================================================
--- Template generated from Template Explorer using:
--- Create Procedure (New Menu).SQL
---
--- Use the Specify Values for Template Parameters 
--- command (Ctrl-Shift-M) to fill in the parameter 
--- values below.
---
--- This block of comments will not be included in
--- the definition of the procedure.
--- ================================================
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
+-- Author:		Jose Julian Gutierrez, Victor Nuñez
+-- Create date: 2/9/22
+-- Description:	SP que filtra articulos por nombre y retorna todos los articulos que contengan ese nombre
 -- =============================================
 ALTER PROCEDURE FiltrarArticulosPorNombre
 @Nombre VARCHAR(128)
@@ -30,7 +19,7 @@ BEGIN
 	SELECT A.id, A.Nombre AS Articulo, A.Precio, C.Nombre AS ClaseArticulo
 	FROM Articulo A
 		INNER JOIN ClaseArticulo C ON C.id = A.idClaseArticulo --forma de ligar tablas
-	WHERE A.Nombre LIKE '%' + @Nombre + '%';
+	WHERE A.Nombre LIKE '%' + @Nombre + '%'; --Captura todos los articulos que contengan ese nombre
 END
 GO
 
