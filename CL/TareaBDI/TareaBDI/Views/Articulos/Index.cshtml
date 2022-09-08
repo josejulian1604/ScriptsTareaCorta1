@@ -1,0 +1,99 @@
+﻿@model IEnumerable<TareaBDI.Models.Articulo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <h2>Index</h2>
+
+    <div class="col">
+        @using (Html.BeginForm("filtrarNombre", "Articulos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <h4>Nombre</h4>
+            <input type="text" name="nombre" id="nombre" />
+            <input type="submit" value="Filtrar por nombre" name="btnFiltrarPorNombre" id="btnFiltrarPorNombre" />
+        }
+        </div>
+    <div class="col">
+        @using (Html.BeginForm("filtrarCantidad", "Articulos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <h4>Cantidad</h4>
+            <input type="text" name="cantidad" id="cantidad" />
+            <input type="submit" value="Filtrar por cantidad" name="btnFiltrarPorCantidad" id="btnFiltrarPorCantidad" />
+        }
+
+    </div>
+    <div class="col">
+        @using (Html.BeginForm("filtrarClase", "Articulos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            //@Html.DropDownList("IdClaseArticulo", null, htmlAttributes: new { @class = "form-control" })
+            <label for="clasesArticulo" ></label>
+            <select name="clasesArticulo" id="clasesArticulo">
+                <option value="Herramientas de mano">Herramientas de mano</option>
+
+                <option value="Herramientas de sujecion">Herramientas de sujecion</option>
+
+                <option value="Elementos de union">Elementos de union</option>
+
+                <option value="Tuberias">Tuberias</option>
+
+                <option value="Componentes diversos">Componentes diversos</option>
+
+                <option value="Escaleras">Escaleras</option>
+
+                <option value="Pinturas">Pinturas</option>
+
+                <option value="Lubricantes">Lubricantes</option>
+
+                <option value="Herrajes">Herrajes</option>
+
+                <option value="Herramientas abrasivas">Herramientas abrasivas</option>
+            </select>
+            <input type="submit" value="Filtrar por clase" name="btnFiltrarPorClase" id="btnFiltrarPorClase" />
+        }
+
+    </div>
+
+    <p>
+        @Html.ActionLink("Insertar Articulo", "Create")
+    </p>
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Precio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ClaseArticulo.Nombre)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Precio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ClaseArticulo.Nombre)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
